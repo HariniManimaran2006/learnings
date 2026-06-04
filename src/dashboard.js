@@ -254,7 +254,14 @@ function Dashboard() {
       `}</style>
 
       <div className="dashboard">
-        <div className="background"></div>
+        <div
+  className="background"
+  style={{
+    backgroundImage: `url(${background})`,
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+  }}
+></div>
           <section className="welcome">
           <h2>Welcome, STUDENT NAME 👋</h2>
           <p>Track your learning progress here.</p>

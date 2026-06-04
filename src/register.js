@@ -1,8 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Logo from "./assets/logo.png";
+
 function Register() {
   const navigate = useNavigate();
+
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    password: "",
+    course: "",
+  });
+
+  const handleRegister = async () => {
+    try {
+      const response = await fetch("http://localhost:5000/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        alert("Registration Successful");
+        navigate("/login");
+      } else {
+        alert(data.message);
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Server Error");
+    }
+  };
+
   return (
     <div
       style={{
@@ -23,17 +57,18 @@ function Register() {
         }}
       >
         {/* Left Section */}
-       <div style={{ textAlign: "center" }}>
-  <img
-    src={Logo}
-    alt="Logo"
-    style={{
-      width: "200px",
-      height: "auto",
-      marginBottom: "20px",
-    }}
-  />
-</div>
+        <div style={{ textAlign: "center" }}>
+          <img
+            src={Logo}
+            alt="Logo"
+            style={{
+              width: "200px",
+              height: "auto",
+              marginBottom: "20px",
+            }}
+          />
+        </div>
+
         <div
           style={{
             width: "50%",
@@ -45,17 +80,16 @@ function Register() {
           </h1>
 
           <p
-    style={{
-      fontSize: "18px",
-      lineHeight: "1.6",
-      marginBottom: "30px",
-    }}
-  >
-    Join our learning platform and build skills needed for the
-    digital future. This course is designed to provide a strong
-    foundation in programming and software development.
-  </p>
-
+            style={{
+              fontSize: "18px",
+              lineHeight: "1.6",
+              marginBottom: "30px",
+            }}
+          >
+            Join our learning platform and build skills needed for the
+            digital future. This course is designed to provide a strong
+            foundation in programming and software development.
+          </p>
 
           <button
             onClick={() => navigate("/login")}
@@ -89,6 +123,10 @@ function Register() {
             <input
               type="text"
               placeholder="Enter full name"
+              value={formData.name}
+              onChange={(e) =>
+                setFormData({ ...formData, name: e.target.value })
+              }
               style={{
                 width: "100%",
                 padding: "12px",
@@ -101,8 +139,12 @@ function Register() {
             />
 
             <input
-              type="text"
+              type="email"
               placeholder="Email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData({ ...formData, email: e.target.value })
+              }
               style={{
                 width: "100%",
                 padding: "12px",
@@ -117,6 +159,10 @@ function Register() {
             <input
               type="text"
               placeholder="Phone Number"
+              value={formData.phone}
+              onChange={(e) =>
+                setFormData({ ...formData, phone: e.target.value })
+              }
               style={{
                 width: "100%",
                 padding: "12px",
@@ -131,6 +177,10 @@ function Register() {
             <input
               type="password"
               placeholder="Password"
+              value={formData.password}
+              onChange={(e) =>
+                setFormData({ ...formData, password: e.target.value })
+              }
               style={{
                 width: "100%",
                 padding: "12px",
@@ -143,13 +193,17 @@ function Register() {
             />
 
             <select
+              value={formData.course}
+              onChange={(e) =>
+                setFormData({ ...formData, course: e.target.value })
+              }
               style={{
                 width: "100%",
                 padding: "12px",
                 marginBottom: "20px",
               }}
             >
-              <option>Select Course</option>
+              <option value="">Select Course</option>
               <option>Full Stack Development</option>
               <option>UI/UX Design</option>
               <option>Python</option>
@@ -158,7 +212,7 @@ function Register() {
 
             <button
               type="button"
-              onClick={() => navigate("/login")}
+              onClick={handleRegister}
               style={{
                 width: "90px",
                 padding: "12px",
@@ -166,7 +220,7 @@ function Register() {
                 color: "white",
                 border: "none",
                 borderRadius: "5px",
-                display: "block ",      
+                display: "block",
                 margin: "20px auto",
                 cursor: "pointer",
               }}
@@ -177,7 +231,7 @@ function Register() {
         </div>
       </div>
     </div>
-    
   );
 }
+
 export default Register;

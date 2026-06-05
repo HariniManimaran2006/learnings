@@ -69,7 +69,7 @@ function Login() {
 
         <button
           type="submit"
-          onClick={() => navigate("/dashboard")}
+          onClick={() => navigate("/quiz")}
           style={{
             width: "50%",
             padding: "10px",

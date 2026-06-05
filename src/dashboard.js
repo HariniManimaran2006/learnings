@@ -5,7 +5,6 @@ import background from "./assets/background.jpg";
 function Dashboard() {
   useEffect(() => {
     const counters = document.querySelectorAll(".counter");
-
     counters.forEach((counter) => {
       const update = () => {
         const target = +counter.getAttribute("data-target");

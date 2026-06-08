@@ -218,7 +218,7 @@ function Register() {
 
             <button
               type="button"
-              onClick={handleRegister}
+              onClick={() => navigate("/login")}
               style={{
                 width: "90px",
                 padding: "12px",

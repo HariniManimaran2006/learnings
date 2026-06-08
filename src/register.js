@@ -57,15 +57,17 @@ function Register() {
         }}
       >
         {/* Left Section */}
-        <div style={{ textAlign: "center" }}>
+        <div style={{ justifyContent: "center" }}>
           <img
             src={Logo}
             alt="Logo"
             style={{
+              justifyContent: "center",
               width: "200px",
-              height: "auto",
               marginBottom: "20px",
-            }}
+              alignItems: "center",
+            
+              }}
           />
         </div>
 
@@ -75,15 +77,19 @@ function Register() {
             textAlign: "center",
           }}
         >
-          <h1 style={{ marginBottom: "30px" }}>
+          <h1 style={{ marginTop: "120px",
+            marginright: "50px",
+           }}>
             REGISTER TO OUR COURSE
           </h1>
 
-          <p
+          <p                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
             style={{
               fontSize: "18px",
               lineHeight: "1.6",
               marginBottom: "30px",
+              alignItems: "center",
+              marginright: "50px",
             }}
           >
             Join our learning platform and build skills needed for the
